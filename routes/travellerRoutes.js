@@ -18,12 +18,12 @@ router.get("/", (req, res) => {
 //find one
 router.get("/:id", async (req, res) => {
    try {
-       const userLocation = await Traveller.findByPk(req.params.id);
-       if (!userLocation) {
+       const userTraveller = await Traveller.findByPk(req.params.id);
+       if (!userTraveller) {
          res.status(404).json({ message: 'No Traveller with this id!' });
          return;
        }
-       res.status(200).json(userLocation);
+       res.status(200).json(userTraveller);
      } catch (err) {
        res.status(500).json(err);
      }
