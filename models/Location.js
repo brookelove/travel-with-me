@@ -1,4 +1,4 @@
-const {MOdel, DataTypes} = require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 const sequelize = require ('../config/connection');
 
 class Location extends Model {}
@@ -21,7 +21,7 @@ Location.init ({
     freezeTableName: true,
     underscored: true,
     modelName: 'car',
-  }
+}
 )
 
 module.exports = Location;
