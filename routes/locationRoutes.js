@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {Location} = require("../models/");
+const {Location, Trip} = require("../models/");
 
 
 //find all
@@ -14,10 +14,12 @@ router.get("/", (req, res) => {
       res.status(500).json({ msg: "an error occured", err });
     });
 });
-//find one
+//find one location 
 router.get("/:id", async (req, res) => {
     try {
-        const userLocation = await Location.findByPk(req.params.id);
+        const userLocation = await Location.findByPk(req.params.id, {
+          include:[{ model: Traveller, through: Trip, as: 'location_traveller'}]
+        });
         if (!userLocation) {
           res.status(404).json({ message: 'No Location with this id!' });
           return;
